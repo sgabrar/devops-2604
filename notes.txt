@@ -1,0 +1,97 @@
+Class - 1
+===========
+
+    -> What Is DevOps ? 
+
+        -> DevOps is a set of "PRACTICES" that works to 
+        "Automate" and "Integrate" the process between 
+        Software Development (Dev) and IT Operations (Ops) Teams.
+
+    -> Development (Dev) Team 
+
+        -> To "Build Applications", we need roles like 
+
+            -> Software Architects 
+            -> Software Developers 
+            -> Software Testers 
+            -> etc 
+
+
+    -> IT Operations (Ops) Team
+
+        -> To "Build Infrastructure", we need roles like 
+
+            -> System Admins 
+            -> Network Admins 
+            -> Cloud Admins 
+            -> etc  
+
+    -> DevOps Engineer 
+
+        -> DevOps Engineers will implement "DevOps PRACTICES" 
+        Using "TOOLS", so that organizations can 
+        BUILD, TEST and DEPLOY Softwares More "FASTER" & "RELIABLE".
+
+
+    
+    -> DevOps "PRACTICES"                               ==>            DevOps "TOOLS"
+
+        -> Version Control System (VCS)                 ==>             Git 
+
+            -> For Tracking Code 
+
+            -> Happens inside Developer Laptop - Local To Individual Developer 
+
+        
+        -> Source Code Management (SCM)                 ==>             GitHub 
+
+            -> For Storing Multiple Versions Of Code 
+
+            -> Happens On Organization Level - Central To All Developers 
+
+
+        -> Containerization                             ==>             Docker  
+
+            -> For Having Light weight Environments 
+
+            -> To Get Acceleration i.e Making "FASTER"
+
+        
+        -> Orchestration                                ==>             Kubernetes  
+
+            -> For Getting Reliability 
+
+            -> Reliability means running Applications without Downtime 
+
+            -> Runs 24 X 7 (My Business is running 24 X 7)
+
+            -> Production Environments Need Reliability 
+
+        -> etc 
+
+
+    
+    -> DevOps Prerequisites 
+
+        -> Understanding Of Your Application / Software - Project 
+
+            -> SDLC - Software Development Life Cycle 
+
+                -> Requirement -> Design -> Code -> Build -> Test -> Release -> Deploy 
+
+
+        -> Understanding Of Servers (AWS & AZURE - Cloud Computing)
+
+            -> Rather than buying Physical Servers, we will be renting 
+            Virtual Servers On Cloud Platforms like AWS & AZURE for 
+            Cost Effectiveness.
+
+        
+        -> Understanding Of Command Line Interface - CLI 
+
+            -> In general we are used to working with Graphical User Interface - GUI 
+            i.e Using Screens, Menus & Options to perform tasks on computers 
+            Create Files / Install Applications etc 
+
+            -> Now as a DevOps Engineer, you need to perform tasks on Servers Using CLI 
+            Create Files / Install Applications etc 
