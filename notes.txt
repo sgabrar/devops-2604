@@ -285,3 +285,124 @@ Class - 3
 
 
 
+Class - 4
+===========
+
+    -> Implement Issue / Feature Assigned To Developer 
+
+        -> Start Coding 
+
+        -> Completed Coding 
+
+        -> Developer Will Raise PR (Pull Request) 
+
+        -> Owner Will Approve The PR (Pull Request) i.e Application Is On GitHub Repository 
+
+    
+
+    -> NOTE: Can Customers Access the Application From GitHub ? 
+
+        -> NO 
+
+    -> We Need Servers To Host / Deploy Applications, so that 
+    Customers Can Access the Application From Servers. 
+
+        -> To do this we need "Operations" related knowledge 
+
+    
+    -> Servers 
+
+        ->  A Server is a "computer system" that provides data or services 
+        to others computers, known as "clients" over a network.
+
+            -> https://upload.wikimedia.org/wikipedia/commons/c/c9/Client-server-model.svg
+
+    
+    -> Physical Server 
+
+        -> Physical Server is hosted on Physical Datacenter / On-prem Datacenter 
+
+    
+    -> Virtual Server / Cloud Server 
+
+        -> Virtual Server / Cloud Server is hosted on Virtual Datacenter / Cloud Datacenter 
+
+
+    -> NOTE: Any Type Of Server has Components i.e Physical / Virtual / Cloud 
+
+        -> CPU (processor) + RAM (memory) + HDD (Disk) + Network 
+
+        -> Operating System (Linux OS - Ubuntu)
+
+        -> Server Softwares 
+
+            -> Web Servers 
+
+                -> Examples: Apache Web Server, Nginx Web Server, IIS Server etc 
+
+            -> Database Servers 
+
+                -> Examples: MySQL, Postgres, Oracle, MS SQL etc 
+
+            -> Email Servers 
+
+                -> Examples: Postfix, SendGrid, Sendmail etc 
+
+            -> etc
+
+    
+    -> Where To Get Servers From ?? 
+
+        -> Purchasing Servers is Costly (3-4 Lakhs INR), from Learning Perspective 
+        we cannot afford a server  
+
+        -> Rather than Purchasing Server, We want to "Rent Servers"  
+
+        -> Buying Bike == Lot Of Expenditure 
+        (Initial Cost 1 Lakh, Service Costs, Petrol Charges etc)    
+
+        -> Renting Bike == Less Expenditure 
+        (Initial Cost 1 Lakh, Service Costs, Petrol Charges etc) - NO 
+
+            -> Only Pay For Kilometers you have traveled (Pay As You Go)
+
+        -> Renting Server == Less Expenditure 
+
+            -> Pay As You Go Price Model 
+
+                -> 1 Server for 1 Hour 
+                -> 5 Server for 1 Hour 
+                -> 5 Server for 5 Hour 
+
+        
+        -> Where Can We Rent Bikes ? 
+
+            -> Ola, Uber, Rapido etc 
+
+        -> Where Can We Rent Servers ? 
+
+            -> AWS, Azure, GCP etc 
+
+
+    -> Cloud Computing 
+
+        -> Cloud computing is the "on-demand" delivery of "IT resources" 
+        like servers, storage, and software over the "internet" 
+        on a "pay-as-you-go" basis.
+
+        -> In Our Course Will Implement Servers On "AWS" & "AZURE" 
+
+        -> AWS Account Setup - LABS 
+        
+            Visit - https://aws.amazon.com/free
+
+        -> AZURE Account Setup - LABS
+            
+            Visit - https://azure.microsoft.com/en-us/free/
+
+        -> Following Details Required - Cloud Setup
+
+            -> Unique Email ID
+            -> Unique Mobile Number
+            -> Unique PAN CARD
+            -> Unique Debit / Credit Card / UPI 
