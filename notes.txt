@@ -467,3 +467,66 @@ Class - 5
                 -> ssh ubuntu@20.120.246.25
 
     -> NOTE: We are using Linux Servers, which has only CLI (Command Line Interface)
+
+
+Class - 6
+===========
+
+    -> Server Setup On AWS Cloud  
+
+        -> Server == AWS EC2 Instance (Instance)
+
+        -> Server will be part of Network 
+
+            Network == AWS Virtual Private Cloud (VPC)
+
+        -> AWS EC2 Instance will be part of AWS Virtual Private Cloud
+
+        -> Firewall 
+
+           -> A firewall is a network security system that monitors and controls 
+           network traffic based on predetermined security rules (protocols)
+
+           -> SSH protocol: Secure Shell Used for remote login, command execution
+
+                -> Port: 22
+
+           -> HTTP protocol: Hypertext Transfer Protocol Used For data exchange on the World Wide Web
+
+                -> Port: 80 
+
+        -> Firewall == AWS Security Group (SG)
+
+    
+    -> To Create / Work With Servers On AWS 
+
+        -> VPC 
+        -> EC2 
+        -> SG 
+
+    -> How To Connect With Server ? 
+
+        -> SSH Client Software 
+
+            -> SSH Client Software helps you connect with remote linux server 
+
+        -> From Web 
+
+            -> https://ssheasy.com/
+
+        -> From Laptop / Desktop 
+
+            -> Install GitBash / Terminal / etc 
+
+            -> Open GitBash
+
+                -> ssh -i identity_key username@public-ip-address 
+
+                -> ssh -i 2604.pem ubuntu@public-ip-address
+
+                -> ssh -i 2604.pem ubuntu@20.120.246.25
+
+                -> chmod 400 identity_key (Read Only Permissions)
+
+                -> chmod 400 2604.pem 
+
