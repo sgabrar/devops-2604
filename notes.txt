@@ -697,3 +697,153 @@ Class - 8
             -> Backend API's: Nodejs 
             -> Frontend: Reactjs 
 
+
+Class - 9
+===========
+
+    -> Our Real Project Code 
+
+        -> https://github.com/ravi2krishna/lms-v1.git
+
+    -> NOTE: Trying to Deploy Above Project Like Login App
+
+        -> Failed: 403 Forbidden Error 
+
+    -> Real World Projects Like LMS Application Goes with Following Approach 
+
+        -> Code -> Code Analysis (White Box Testing - DevSecOps) -> Build -> Test -> Deploy 
+
+        -> NOTE: The Above Stages / Steps in Software Development Makes Up "CI-CD" Pipelines
+
+
+
+    -> Static Code Analysis (White Box Testing - DevSecOps)
+
+        -> Static code analysis is the "process" of examining source code, 
+        without executing it to find potential bugs, security vulnerabilities and 
+        quality issues.
+
+        -> Automated tools can scan the code against predefined rules 
+        to identify problems early in the development cycle, 
+        promoting better coding practices and security. 
+
+
+        -> Static code analysis can help identify various types of issues, including:
+
+                Syntax errors and typos
+                Unused variables and methods
+                Code duplication
+                Security vulnerabilities (e.g., SQL injection, cross-site scripting)
+                Memory leaks and resource leaks
+                Performance issues
+                Conformance to coding standards and style guidelines (e.g., indentation, naming conventions)
+    
+    -> NOTE: Later on we as DevOps Engineers Will Setup Automated CI-CD Pipelines
+    in which Static Code Analysis - SCA is one of the Steps 
+
+        -> https://miro.medium.com/v2/resize:fit:700/1*JSnrNQJAnyt8A2OiANfLCA.png
+
+        -> https://miro.medium.com/v2/resize:fit:1400/1*imFXvmkKx572ctTPXTCVSQ.png
+
+        -> https://media.licdn.com/dms/image/v2/D4E12AQEw-WgeGTPoKw/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1726133260230?e=2147483647&v=beta&t=9SVi1jiR2f_oDciJYKnvvVEXwbZVZeK8lnyqfxToNUI
+
+
+    
+    -> Earlier To Implement "Version Control Process", We Used "Git" Tool 
+
+    -> Earlier To Implement "Source Code Management Process", We Used "GitHub" Tool 
+
+    -> Now To Implement "Static Code Analysis Process", We Will Use "SonarQube" Tool 
+
+
+    -> SonarQube
+
+        -> SonarQube is an open-source platform for "continuous" "code quality and security analysis" 
+        that helps developers identify bugs, security vulnerabilities, and code smells in their code. 
+        It integrates with CI/CD pipelines.
+
+        -> https://www.sonarsource.com/products/sonarqube/  
+
+        -> https://assets-eu-01.kc-usercontent.com/ef593040-b591-0198-9506-ed88b30bc023/38955c91-7420-4a34-9640-1aa65cc4ae6c/sonarqube_general_2x.webp?w=1120&h=630&auto=format&fit=crop
+
+    
+    
+    -> SonarQube Setup Requires Following Hardware Configuration 
+
+        -> AWS / AZURE
+
+            -> 16 GB RAM - 2 CPU's - 30 GB Storage 
+
+            -> NOTE: Charges Applicable i.e 16 INR Per Hour 
+
+            -> NOTE: SonarQube Works On Port 9000 
+
+                -> Make sure to add port 9000 as part of your Firewall 
+                Security Group(AWS) or Network Security Group(Azure)
+
+        -> To Install SonarQube In Regular Way like a Admin 
+
+            -> https://github.com/ravi2krishna/sonarqube-installation-guide.git - 45 Mins 
+
+        
+        -> To Install SonarQube In DevOps Way like a DevOps Engineer
+
+            -> Will Use Tool Called "Docker"
+
+            -> With Docker We Can Accelerate / Get Faster i.e SonarQube Setups Takes 5 Mins 
+
+
+        -> Verify SonarQube Installation
+
+            -> sudo ss -ntpl
+            -> Browse SonarQube, in Browser with port 9000 -> ip_address:9000 
+
+        
+        -> For SonarQube Installation, We Need Docker 
+
+            docker
+            ls
+            wget -O get-docker.sh https://get.docker.com && sh get-docker.sh
+            ls
+            docker
+
+
+        -> Install SonarQube
+            sudo ss -ntpl
+            sudo docker container run -dt --name sonarqube --restart=always -p 9000:9000 sonarqube
+            sudo ss -ntpl
+
+        -> Browse SonarQube, in Browser with port 9000 -> ip_address:9000 
+
+        -> Default credentials are 
+            Username is admin 
+            Password is admin
+
+        
+    -> LMS Project Repository 
+
+        -> https://github.com/ravi2krishna/lms-v1.git
+
+    -> Github Fork
+
+        -> Forking a repository means creating a copy of the repo. 
+        When you fork a repo, you create your own copy of the repo on your GitHub account.
+
+        -> NOTE: Fork Above Project to your Github Accounts
+
+    -> Performing Code Analysis On LMS Project (Below Link Should be Replaced with your github account )
+    
+        -> https://github.com/sgabrar/lms-v1.git
+
+        ls 
+        git clone -b dev https://github.com/sgabrar/lms-v1.git
+        ls 
+        ls lms-v1
+        cd lms-v1/webapp
+        ls 
+        sudo docker run  --rm -e SONAR_HOST_URL="http://40.90.195.80:9000" -v ".:/usr/src" sonarsource/sonar-scanner-cli -Dsonar.token=sqp_59d5791dcac74a935d4b3bb3e757d85c44b181c3 -Dsonar.projectKey=lms
+
+        -> NOTE: For above command replace your SonarQube Address, your Token & your Project Name
+
+    
+    -> NOTE: Once LAB is done with Sonar Analysis, Delete SonarQube Server 
