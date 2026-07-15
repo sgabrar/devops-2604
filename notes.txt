@@ -847,3 +847,238 @@ Class - 9
 
     
     -> NOTE: Once LAB is done with Sonar Analysis, Delete SonarQube Server 
+
+
+Class - 10
+===========
+
+    -> Build Management 
+
+        -> The term "build" may refer to the "process" by which 
+        "source code" is converted into "binary code" (software artifact)
+
+        -> In DevOps, the software build process is a foundational component of the 
+        Continuous Integration and Continuous Delivery (CI/CD) pipeline, 
+        serving as a critical automated step that transforms 
+        source code into a deployable product.
+
+        -> Source Code - https://github.com/notepad-plus-plus/notepad-plus-plus/
+
+            -> After Building, Artifact is Useable Software which is below 
+
+        -> Binary Code - https://notepad-plus-plus.org/downloads/
+
+    
+    -> Any Build implementation consists of following steps 
+
+        -> Source Code Files 
+
+            -> Source code is the list of human-readable instructions that a programmer writes
+
+            -> Handled by Developer
+
+        -> Metadata File 
+
+            -> File that contains information about the project and 
+            configuration details used to build the project. 
+
+            -> Handled by Developer
+
+        -> Binary Code (After Build is done)
+
+            -> Build artifacts are files produced by a build
+
+            -> Handled by Developer in his Laptop
+            
+            -> Handled by DevOps Engineer on Server for future Automation in CI-CD
+
+
+    
+    -> NOTE: Below Link Help's you understand, how developers initially learn to perform builds 
+
+        -> https://radixweb.com/blog/steps-to-build-react-project-with-create-react-app
+
+    
+    -> LMS Project Build 
+
+        -> As LMS App is multi tier, We need Following Rules(ports) in Security Group / Network Security Group
+    
+            -> SSH - 22 - Login
+            -> DATABASE TIER [ POSTGRES ] - 5432 - Storing Data
+            -> APPLICATION TIER [ NODEJS ] - 8080 - Business Logics
+            -> FRONTEND TIER [ REACTJS ] - 80 - Hosted On Web Server
+
+    -> LMS App Build Requires Following Hardware Configuration 
+
+        -> AWS / AZURE
+
+            -> 4 GB RAM - 2 CPU's - 30 GB Storage 
+
+        -> Make sure to add ports 22 - 5432 - 8080 - 80  as part of your Firewall 
+        Security Group(AWS) or Network Security Group(Azure)
+
+
+    -> sudo ss -ntpl
+
+        -> Setup Database 
+
+            -> Goto https://www.postgresql.org/download/linux/ubuntu/
+
+                sudo apt install curl ca-certificates
+                sudo install -d /usr/share/postgresql-common/pgdg
+                sudo curl -o /usr/share/postgresql-common/pgdg/apt.postgresql.org.asc --fail https://www.postgresql.org/media/keys/ACCC4CF8.asc
+                . /etc/os-release
+                sudo sh -c "echo 'deb [signed-by=/usr/share/postgresql-common/pgdg/apt.postgresql.org.asc] https://apt.postgresql.org/pub/repos/apt $VERSION_CODENAME-pgdg main' > /etc/apt/sources.list.d/pgdg.list"
+                sudo apt update
+                sudo apt install postgresql-18 -y 
+
+    -> sudo ss -ntpl
+
+    -> Every Database has connection properties, which includes
+            -> Address Of Database
+            -> Database Port
+            -> Database Username
+            -> Database Password
+
+    -> Commands to set the password for postgres database
+            -> sudo su - postgres
+            -> psql
+            -> \password
+    
+
+    -> NOTE: https://miro.medium.com/v2/resize:fit:1400/1*9nvTbygByYk1TBGVLB86PQ.png
+
+
+    -> Setup Backend / App Layer For LMS 
+
+            -> Create a new session for server using "ubuntu" user 
+
+            -> Install Nodejs on your server using below Link 
+
+                -> https://nodesource.com/products/distributions
+
+                    node -v
+                    npm -v
+                    curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+                    sudo apt-get install nodejs -y
+                    node -v
+                    npm -v
+
+    
+    -> Steps to Build Backend API (use "ubuntu" user session)
+
+            -> ls
+            -> git clone -b dev https://github.com/ravi2krishna/lms-v1.git 
+            -> ls 
+            -> cd ~/lms-v1/api
+            -> vi .env 
+
+                MODE=dev
+                PORT=8080
+                DATABASE_URL=postgresql://postgres:db_password@localhost:5432/postgres
+
+                -> NOTE: In .env file we would specify the database connection details.
+
+                    -> grep .env -r
+            
+            -> Verify in "postgres" user session 
+
+                -> \dt 
+
+            -> Database Schema (Verify in "ubuntu" user session)
+
+                -> cat prisma/migrations/20221110085013_init/migration.sql
+            
+            -> Commands to setup Database tables (Verify in "ubuntu" user session)
+
+                -> npm install 
+                -> npx prisma generate && npx prisma db push
+            
+            -> Verify in "postgres" user session 
+
+                -> \dt 
+
+            -> NOTE: Command to build application using "ubuntu" user
+
+                -> ls build
+                -> npm run build 
+                -> ls build
+
+            -> Verify Backend with Browser 
+                
+                -> Browse http://public-ip:8080/api  
+
+            -> NOTE: Command to start application using "ubuntu" user    
+                
+                -> node build/index.js 
+
+        -> Verify Backend Status 
+
+            -> Verify with Browser - http://public-ip:8080/api  
+
+            -> NOTE: If you get below message, backend deployment is success   
+            
+                {"message":"success","mode":"dev"}
+
+    
+    
+    -> Setup Frontend / Client Layer For LMS 
+
+        -> In Our Repo, we have "webapp" directory which is frontend part of the application
+
+        -> Create a new session for server using "ubuntu" server for frontend operations 
+
+        -> cd ~/lms-v1/webapp/
+
+        -> vi .env 
+
+            VITE_API_URL=http://public-ip:8080/api
+
+        -> To build frontend
+
+            -> npm install
+            -> ls dist
+            -> npm run build 
+            -> ls dist
+
+        -> To Host Frontend, we need web server 
+
+            -> sudo ss -ntpl
+            -> sudo apt -y install nginx
+            -> sudo ss -ntpl
+            -> ls /var/www/html/
+            -> sudo rm -rf /var/www/html/*
+            -> ls /var/www/html/
+            -> sudo cp -r ~/lms-v1/webapp/dist/*  /var/www/html/
+            -> ls /var/www/html/
+            -> ls dist 
+
+            -> SELECT * FROM "Course";
+
+    
+    -> For Troubleshooting 
+
+        -> Check In "ubuntu" user Session
+
+            -> sudo ss -ntpl
+            -> sudo systemctl stop postgresql
+            -> sudo ss -ntpl
+            -> sudo systemctl start postgresql
+            -> sudo ss -ntpl
+
+            -> sudo ss -ntpl
+            -> go to backend session
+                -> control + c 
+            -> sudo ss -ntpl
+            -> node build/index.js
+            
+            -> Check In "ubuntu" user Session
+            -> sudo ss -ntpl
+            -> sudo systemctl stop nginx
+            -> sudo ss -ntpl
+            -> Check Application in Browser
+            -> sudo systemctl start nginx
+            -> sudo ss -ntpl
+            -> Check Application in Browser
+
+    -> NOTE: Terminate Server Once Lab is done 
