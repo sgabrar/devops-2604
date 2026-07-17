@@ -1082,3 +1082,176 @@ Class - 10
             -> Check Application in Browser
 
     -> NOTE: Terminate Server Once Lab is done 
+
+
+
+Class - 11
+===========
+
+    -> Project - 1 - LMS Application
+
+    -> NOTE: Next Goal is to implement "DevOps Practices" On Project - 1 - LMS Application
+    
+    -> DevOps is a set of PRACTICES that works towards the 
+    "AUTOMATION" and "INTEGRATION" of the processes between 
+    Software Development (Dev) and IT (Ops) teams, 
+    so that organizations can "BUILD", "TEST" and "DEPLOY" 
+    softwares/applications "FASTER" and more "RELIABLE"
+
+    
+    -> DevOps Engineer 
+
+        -> DevOps Engineers will implement DevOps "PRACTICES" Using "TOOLS", 
+        so that organizations can Build, Test & Deploy (Delivery Line) 
+        Softwares More "FASTER" & "RELIABLE".
+
+
+    -> Project - 1 - LMS Application
+
+        -> NOTE: Above Project Took 2-3 Hours To Complete 
+
+            -> Code -> Code Analysis -> Build -> Testing -> Deploying 
+
+    -> From DevOps Team, Organizations are looking For Acceleration i.e 
+    making things FASTER
+
+
+    -> From Our Earlier Experience, Using SonarQube traditional way took 45 Mins  
+
+        -> We Used Docker got the same thing done within 5 Mins 
+    
+    -> Why Shouldn't we apply Docker On Whole Project - 1 - LMS Application ?? 
+
+        -> Whole Project Process (Dev To Ops) -> Traditional Way Took 2-3 Hours
+
+        -> Whole Project Process (Dev To Ops) -> Docker Way Took 5-10 mins 
+
+
+    -> How To Make Whole Project Process in 5-10 mins ?? 
+
+        -> docker container run -dt --name sonarqube --restart=always -p 9000:9000 sonarqube
+
+    
+    -> NOTE: To Accelerate Development & Deployment Process, We Will Use 
+    "Containerization" Practice 
+
+
+
+    -> Project - 2 
+
+        -> Implement Acceleration On Any Project (LMS Applicable) Using 
+        "Containerization" Practice
+
+        -> Containerization
+
+            -> Containerization is one of the practices in devops, which provides 
+
+            -> "Lightweight" and "Efficient" way of running applications 
+            
+            -> Promotes "Faster Deployments" and "Portability" for application
+
+        -> NOTE: Containerization is implemented By "Docker" 
+
+    
+    -> Container 
+
+        -> An object for holding or transporting something 
+
+            -> https://upload.wikimedia.org/wikipedia/commons/d/df/Container_01_KMJ.jpg
+
+        -> In terms of software development, a container is an object 
+        for holding or transporting/shipping applications.
+
+    
+    -> Monolithic Architecture 
+
+        -> Monolithic architecture is a development approach where the entire application 
+        is built as a "single, indivisible unit".
+
+        -> https://img.favpng.com/25/1/18/microservices-nginx-monolithic-application-domain-driven-design-reverse-proxy-png-favpng-w2rapqPnDTMhzWnRp1SnfFUvi.jpg
+
+        -> Tight Coupling 
+
+
+    -> Micro Services Architecture
+
+        -> Microservices Architecture is a software development approach that involves 
+        building "small, independent services" that work together to create a larger application.
+
+        -> https://media2.dev.to/dynamic/image/width=800%2Cheight=%2Cfit=scale-down%2Cgravity=auto%2Cformat=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Ft1ien7stu2l7v1u7mfjl.png
+
+        -> Loose Coupling 
+
+    
+    -> Containerization Provides "Lightweight" and "Efficient" way of running applications 
+
+    -> NOTE: As DevOps Engineers, Deploying Micro Sized Applications(Micro Services)
+    On Containers is our Primary Work On Projects
+
+
+    -> To understand Docker, We need to know Docker Architecture (Components)
+
+        -> Docker CLI (Client)
+
+        -> Docker Server (Daemon)
+
+        -> Docker Registry (Docker Hub - https://hub.docker.com )
+
+        -> Docker Images 
+
+        -> Docker Containers 
+
+    
+    -> https://assets.bytebytego.com/diagrams/0414-how-does-docker-work.png
+
+    
+    -> Python is Programming "Language" 
+    -> SonarQube is Code Analysis "Tool"
+    -> Ubuntu is Operating System "System Software"
+    -> Postgres is Database 
+
+    -> NOTE: All above are present in Docker Registry As Images (https://hub.docker.com)
+
+    -> Python is an Image
+    -> SonarQube is an Image
+    -> Ubuntu is an Image
+    -> Postgres is an Image
+
+    -> NOTE: All the above Images are stored in Docker Registry, 
+    just like Different Applications on Play Store,
+    if an Application is not available on Play Store, We can Build.
+    Same way we can build our own Custom Docker Images Too and Store on Docker Registry.
+
+    
+    -> Docker Containers are Runtime Of Images 
+
+        -> Images are like Templates / Blueprints
+
+        -> Containers are Real Entities We run
+
+        -> NOTE: To create a container, image is mandatory 
+
+
+    -> A container is an object for holding or transporting/shipping applications.
+
+            -> To Create Container, we use Docker Client (CLI) and make a request 
+
+            -> DevOps Engineer -> Makes Request For Creating Container Using Docker Client (CLI)
+
+                -> Docker Client (CLI) -> Sends Request To Docker Server (Daemon) 
+                    -> Daemon Connects To Docker Registry -> Fetch Docker Images to Server(compute) 
+                        -> Using Image Daemon Runs/Creates Containers
+
+    
+        -> The Daemon/Service is responsible for managing Docker objects 
+        such as images, containers, and networks. All the heavy lifting is done by daemon.
+        
+        -> The client sends commands to the daemon and receives output. 
+        
+        -> The registry stores Docker images and allows them to be shared among users and systems.
+
+        -> A Docker image is a lightweight, standalone, and executable package 
+        that includes everything needed to run the desired software application.
+
+        -> A container in Docker allows you to run an application with all the dependencies it needs. 
+        To create a container we need Docker Image.
