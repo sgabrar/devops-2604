@@ -1255,3 +1255,114 @@ Class - 11
 
         -> A container in Docker allows you to run an application with all the dependencies it needs. 
         To create a container we need Docker Image.
+
+
+Class - 12
+===========
+
+    -> Setup Docker 
+
+        -> AWS / AZURE
+
+            -> 4 GB RAM - 2 CPU's - 30 GB Storage 
+
+        -> Make sure to add following ports part of your Firewall 
+        Security Group(AWS) or Network Security Group(Azure)
+
+                -> 22, 80, 32768-61000, 8080-9090
+
+                -> 32768-61000 -> Docker Pre Defined Range(mandatory)
+                -> 8080-9090   -> User Defined Range(Optional i.e Based On Requirements)
+                -> 3000-5000   -> User Defined Range(Optional i.e Based On Requirements)
+
+        -> Install Docker 
+
+            -> docker 
+            -> wget -O get-docker.sh https://get.docker.com && sh get-docker.sh
+            -> docker 
+
+        -> Check Docker information
+
+            -> docker info 
+            
+            -> NOTE: Permission issues as ubuntu user cannot work with docker daemon, 
+            fix by adding ubuntu user to docker group
+
+                -> sudo grep docker /etc/group
+                -> sudo usermod -aG docker ubuntu
+                -> newgrp docker 
+                -> sudo grep docker /etc/group
+
+            -> docker info 
+
+        -> Check Docker Images 
+
+            -> docker image ls 
+
+        -> Check Docker Containers  
+
+            -> docker container ls -a 
+        
+        -> Create Docker Container
+
+            -> docker container run --name name_of_container image_name
+
+                    -> NOTE: hello-world docker image confirms installation status 
+
+            -> docker container run --name c1 hello-world
+
+
+    -> To Run Containers We Have Modes 
+
+        -> No Mode 
+
+            -> Containers will exit i.e Stopped
+
+            -> docker container run --name c1 hello-world
+
+                -> Name conflicts
+
+            -> docker container run --name ubuntu-container ubuntu
+
+            -> docker container ls -a
+
+            -> NOTE: Containers stopped in No Mode 
+
+
+        -> Interactive Mode / Foreground Mode (Development / Troubleshooting)
+
+            -> Containers will run interactively 
+
+            -> docker container run -it --name name_of_container image_name
+
+            -> docker container run -it --name ubc1 ubuntu
+
+            -> cat /etc/os-release
+
+            -> Verify By Opening One more Sessions For Docker Server 
+
+                -> docker container ls -a
+
+                -> Check the STATUS 
+
+            -> NOTE: Containers are "Lightweight" and "Efficient"
+
+                -> Run Following Command On Docker Server 
+
+                    -> ps -ef 
+
+                -> Run Following Command On Docker Container (ubc1)
+
+                    -> ps -ef 
+
+                    -> ssh 
+
+                    -> git 
+
+                    -> ss
+
+                -> NOTE: As we have Microservices, we need Micro Sized Environments
+                i.e Containers Using Images Which Has Only What is Required
+
+            -> NOTE: In Interactive Mode Containers Will stop, once we come out of the container
+            i.e it stays alive until you are connected.
