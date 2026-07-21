@@ -1366,3 +1366,256 @@ Class - 12
 
             -> NOTE: In Interactive Mode Containers Will stop, once we come out of the container
             i.e it stays alive until you are connected.
+
+
+Class - 13
+===========
+
+        -> Detached Mode / Background Mode (Production)
+
+            -> Containers will "ALWAYS" run in Background, 
+            unless you explicitly Stop 
+
+            -> docker container run -dt --name name_of_container image_name
+
+            -> docker container run -dt --name ubc2 ubuntu
+
+            -> docker container run -dt --name ubc2 ubuntu
+
+            -> docker container ls -a
+
+            -> docker container exec name_of_container command_to_execute
+
+            -> docker container exec ubc2 cat /etc/os-release
+
+            -> docker container exec ubc2 ps -ef
+
+            -> To Interact with container use below command 
+
+                -> docker container exec -it name_of_container bash 
+
+                -> docker container exec -it ubc2 bash 
+
+                -> exit 
+
+                -> docker container ls -a 
+
+                    -> NOTE: Container is still up and running, unlike Interactive Mode 
+
+    
+    -> Container Management Commands 
+
+        -> Just Like Servers: Create / Start / Stop / Remove   
+
+        -> With Containers also it's Same: Create / Start / Stop / Remove   
+
+            -> docker container rm name_of_container 
+            -> docker container rm id_of_container 
+
+            -> docker container stop name_of_container 
+            -> docker container stop id_of_container 
+
+            -> docker container start name_of_container 
+            -> docker container start id_of_container
+             
+            -> docker container run -dt --name name_of_container image_name
+
+    
+    -> Goal: Run Web Applications In Containers, Like we did earlier with Servers 
+
+        -> Procedure In Server / VM 
+
+            -> Create Server 
+            -> Update System 
+            -> Installing Nginx Web Server 
+            -> Fetch Application Code 
+            -> Deploy Application On Nginx Web Server  - /var/www/html 
+
+        -> Procedure In Container 
+
+            -> docker container run -dt --name webapp ubuntu 
+
+            -> docker container exec -it webapp bash 
+
+            -> ss -ntpl
+
+            -> apt update -y 
+
+            -> apt install iproute2 -y 
+
+            -> ss -ntpl
+
+            -> apt install nginx -y
+
+            -> service nginx start 
+
+            -> ss -ntpl
+
+    -> Check Container properties
+
+        -> docker container inspect name_of_container
+
+        -> docker container inspect webapp
+
+            -> "IPAddress": "172.17.0.2"
+
+            -> 172.17.0.2 is a private ip created under docker network,
+            private ips work in Intranet.
+
+            -> curl 172.17.0.2
+
+    
+    -> New Requirement
+
+        -> We Have Ecommerce Application Which Requires a Web Server 
+
+        -> We Have LMS Application Which Requires a Web Server 
+
+        -> We Have CRM Application Which Requires a Web Server 
+
+    -> NOTE: With Earlier Approach, i might have needed three different Servers 
+
+        -> Server-1: Ecommerce Application On Nginx
+
+        -> Server-2: LMS Application On Nginx
+
+        -> Server-3: CRM Application On Nginx
+
+
+    -> NOTE: With Docker Approach, i might have needed three different Containers  
+
+        -> Container-1: Ecommerce Application On Nginx
+
+        -> Container-2: LMS Application On Nginx
+
+        -> Container-3: CRM Application On Nginx
+
+    
+    -> Ecommerce Application  In Container 
+
+            -> docker container run -dt --name ecommerce ubuntu 
+
+            -> docker container exec -it ecommerce bash 
+
+            -> ss -ntpl
+
+            -> apt update -y 
+
+            -> apt install iproute2 -y 
+
+            -> ss -ntpl
+
+            -> apt install nginx -y
+
+            -> service nginx start 
+
+            -> ss -ntpl
+
+            -> exit 
+
+            -> docker container ls -a 
+
+    
+    -> CRM Application  In Container 
+
+            -> docker container run -dt --name crm ubuntu 
+
+            -> docker container exec -it crm bash 
+
+            -> ss -ntpl
+
+            -> apt update -y 
+
+            -> apt install iproute2 -y 
+
+            -> ss -ntpl
+
+            -> apt install nginx -y
+
+            -> service nginx start 
+
+            -> ss -ntpl
+
+            -> exit 
+
+            -> docker container ls -a 
+
+    
+    -> LMS Application  In Container 
+
+            -> docker container run -dt --name lms ubuntu 
+
+            -> docker container exec -it lms bash 
+
+            -> ss -ntpl
+
+            -> apt update -y 
+
+            -> apt install iproute2 -y 
+
+            -> ss -ntpl
+
+            -> apt install nginx -y
+
+            -> service nginx start 
+
+            -> ss -ntpl
+
+            -> exit 
+
+            -> docker container ls -a 
+
+    -> NOTE: With Above Approach, we need to do redundant actions,
+    that is why it's not a good approach for containers.
+
+    -> docker container rm -f webapp ecommerce
+
+    -> docker container ls -a 
+
+
+    -> NOTE: Below Approach is a recommended way for Containers 
+
+    -> GOAL: Deploying Web Applications, For Which We Need Web Server 
+
+    -> Python is Programming "Language" 
+    -> SonarQube is Code Analysis "Tool"
+    -> Ubuntu is Operating System "System Software"
+    -> Postgres is Database 
+
+    -> NOTE: All above are present in Docker Registry As Images (https://hub.docker.com)
+
+    -> Python is an Image
+    -> SonarQube is an Image
+    -> Ubuntu is an Image
+    -> Postgres is an Image
+
+
+    -> Recommended way of creating Containers 
+
+        -> Ecommerce Application  In Container 
+
+            -> docker container run -dt --name ecommerce nginx 
+
+        -> CRM Application  In Container 
+
+            -> docker container run -dt --name crm nginx 
+
+        -> LMS Application  In Container 
+
+            -> docker container run -dt --name lms nginx 
+
+    
+    -> NOTE: Now how can we make Customers access these 
+    Web Applications from Internet ??
+
+    -> To Access Containers Outside network i.e Internet(WWW)
+    we need to understand "Docker Networking"
+
+    -> Docker Supports Following Network Driver, Each designed for 
+    Specific Use Case 
+
+        -> Host Network Driver  
+
+        -> None Network Driver 
+
+        -> Bridge Network Driver (***)
