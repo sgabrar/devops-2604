@@ -1619,3 +1619,95 @@ Class - 13
         -> None Network Driver 
 
         -> Bridge Network Driver (***)
+
+
+Class - 14
+===========
+
+    -> Host Network Driver
+
+        -> The host network driver in Docker removes network isolation 
+        between a container and its host, allowing the container to 
+        share the host's networking namespace directly.
+
+        -> The container does not get its own IP address; 
+        instead, it uses the host's IP address.
+
+        -> docker container run -dt --name ecommerce --network=host nginx 
+
+        -> docker container run -dt --name crm --network=host nginx 
+
+        -> NOTE: Port Conflicts: Because the container uses the host's ports, 
+        you cannot run two containers that use the same port 
+        (e.g., two Nginx instances on port 80) using the host driver.
+
+    
+    -> None Network Driver  
+
+        -> The "none" network driver in Docker provides complete 
+        network isolation by disabling all networking for a container.
+
+        -> The container cannot reach external networks, 
+        and no external network can reach the container.
+
+        -> Docker does not assign any IP address to containers using this driver.
+
+        -> docker container run -dt --name crm --network=none nginx
+
+
+    -> Bridge Network Driver
+
+        -> Bridge Network Driver is default network driver for containers. 
+        When a new container is Created, it's attached to the Bridge network.
+
+        -> Using bridge network we can run multiple containers at same time
+        that can reach external networks as well
+
+        -> To allow external access to Containers we use Port Publishing/Forwarding.
+
+        -> Port Publishing: To make a container service accessible from outside the host, 
+        you must map a host port to a container port using the -p or --publish flag. 
+
+        -> -P for ephemeral ports (predefined range 32768 to 61000)
+
+
+    -> Recommended way of creating Containers (predefined range 32768 to 61000)
+
+        -> Ecommerce Application  In Container 
+
+            -> docker container run -dt --name ecommerce -P nginx 
+
+        -> CRM Application  In Container 
+
+            -> docker container run -dt --name crm -P nginx 
+
+        -> LMS Application  In Container 
+
+            -> docker container run -dt --name lms -P nginx 
+
+    
+    -> Recommended way of creating Containers (user defined range 8080 to 9090)
+
+        -> Ecommerce Application  In Container 
+
+            -> docker container run -dt --name ecommerce -p 8080:80 nginx 
+
+        -> CRM Application  In Container 
+
+            -> docker container run -dt --name crm -p 8085:80 nginx 
+
+        -> LMS Application  In Container 
+
+            -> docker container run -dt --name lms -p 8090:80 nginx 
+
+    
+        -> Login Application In Container 
+
+            -> docker container run -dt --name login-app -p 80:80 nginx 
+
+            -> git clone https://github.com/ravi2krishna/login-2604.git /var/www/html  (Servers)
+
+            -> git clone https://github.com/ravi2krishna/login-2604.git /usr/share/nginx/html  (Containers)
+
+    
+    -> docker container run -dt --name sonarqube --restart=always -p 9000:9000 sonarqube
